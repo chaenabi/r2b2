@@ -4,3 +4,6 @@ package-lock.json
 /build
 /test
 /public
+
+## IDE
+../.idea
