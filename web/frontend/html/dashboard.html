@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R2D2 Dashboard</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../assets/fontawesome-5.13.1/css/all.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <style>
+      /* active */
+      .nav-item:nth-child(2) {
+        width: 320px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 5px solid #5e72e4;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav-container">
+        <section class="nav-section">
+          <div class="nav-title">
+            <a class="nav-title-text">R2D2 Project</a>
+          </div>
+          <div class="nav-title-img">
+            <a class="nav-title-img-link" href="../html/index.html">
+              <img class="nav-title-img" src="../assets/main.png" />
+            </a>
+          </div>
+        </section>
+        <div class="divide-area"></div>
+        <section class="nav-bar">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <i class="fas fa-home"></i
+              ><a class="nav-item-link" href="../html/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-desktop"></i
+              ><a class="nav-item-link" href="../html/dashboard.html"
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-pencil-ruler"></i
+              ><a class="nav-item-link" href="../html/statistics.html"
+                >Statistics</a
+              >
+            </li>
+          </ul>
+        </section>
+        <footer class="nav-footer">
+          <a>© R2D2 SINCE 2020</a>
+        </footer>
+      </nav>
+
+      <section class="dashboard-section">
+        <div class="dashboard-img">
+          <img
+            id="dashboard-r2d2"
+            src="../assets/dashboard.png"
+            alt="dashboard"
+          />
+        </div>
+
+        <!-- <canvas id="canvas" width="1000" height="1000"></canvas> -->
+      </section>
+    </div>
+
+    <script src="../js/dashboard.min.js"></script>
+  </body>
+</html>

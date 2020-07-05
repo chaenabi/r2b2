@@ -1,0 +1,13 @@
+/* all */
+@font-face {
+  font-family: BM;
+  src: url("../assets/fontawesome-5.13.1/webfonts/bm.woff");
+}
+
+* {
+  font-family: "BM", serif;
+}
+
+.container {
+  display: flex;
+}

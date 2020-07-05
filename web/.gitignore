@@ -1,0 +1,9 @@
+/config
+/node_modules
+package-lock.json
+/build
+/test
+/public
+
+## IDE
+../.idea
