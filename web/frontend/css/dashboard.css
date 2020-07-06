@@ -5,13 +5,17 @@
   height: 100vh;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
+  background-color: #292c2c;
 }
 
 .dashboard-img {
   margin: auto;
   position: absolute;
+  width: 500px;
+  height: 500px;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  box-sizing: border-box;
 }
