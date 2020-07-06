@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/nav.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-
     <style>
       /* active */
       .nav-item:nth-child(2) {
@@ -24,6 +23,9 @@
     </style>
   </head>
   <body>
+    <script src="../js/mo.js"></script>
+    <script src="../js/dashboard.js"></script>
+
     <div class="container">
       <nav class="nav-container">
         <section class="nav-section">
@@ -63,7 +65,29 @@
       </nav>
 
       <section class="dashboard-section">
-        <div class="dashboard-img">
+        <div class="door-bar">
+          <article class="door-toggle">
+            <p>청정기 도어 오픈 상태</p>
+
+            <input type="checkbox" id="door1-open" />
+            <label for="door1-open"></label>
+            <input type="checkbox" id="door2-open" />
+            <label for="door2-open"></label>
+            <input type="checkbox" id="door3-open" />
+            <label for="door3-open"></label>
+            <input type="checkbox" id="door4-open" />
+            <label for="door4-open"></label>
+            <input type="checkbox" id="door5-open" />
+            <label for="door5-open"></label>
+            <input type="checkbox" id="door6-open" />
+            <label for="door6-open"></label>
+            <input type="checkbox" id="door7-open" />
+            <label for="door7-open"></label>
+            <input type="checkbox" id="door8-open" />
+            <label for="door8-open"></label>
+          </article>
+        </div>
+        <div class="dashboard-r2d2-img">
           <img
             id="dashboard-r2d2"
             src="../assets/r2d2-preview.png"

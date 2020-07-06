@@ -1,21 +1,76 @@
 .dashboard-section {
-  display: grid;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 20% 20% 20% 20% 20%;
+  display: flex;
+  flex-grow: 1;
   background-color: #292c2c;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.dashboard-img {
-  margin: auto;
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+.door-bar {
+  width: 70vw;
+  height: 100px;
+}
+
+.door-toggle {
+  display: flex;
+  border: 2px solid gold;
+  height: 100px;
+  flex-wrap: nowrap;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.door-toggle > p {
+  color: white;
+  font-size: 32px;
+  margin-left: 40px;
+  flex-basis: 450px;
+}
+
+.door-toggle > input[type="checkbox"] {
+  display: none;
+}
+
+.door-toggle > input[type="checkbox"]:checked + label::before {
+  content: "OPEN";
+  font-size: 24px;
+  justify-content: center;
+  transition: color 0.5s;
+  color: tomato;
+}
+
+.door-toggle > label {
+  display: inline-block;
   box-sizing: border-box;
+  width: 100px;
+  height: 34px;
+  font-size: 24px;
+  margin-right: 50px;
+  position: relative;
+  background-color: transparent;
+}
+
+.door-toggle > label::before {
+  content: "CLOSE";
+  display: block;
+  border: none;
+  width: 95px;
+  height: 26px;
+  left: 4px;
+  bottom: 4px;
+  position: absolute;
+  background-color: transparent;
+  transition: all 0.4s ease;
+}
+
+/* .dashboard-r2d2-img {
+  margin-bottom: 100px;
+} */
+
+@media all and (min-width: 568px) and (max-width: 1024px) {
+  .door-bar {
+    display: none;
+  }
 }
