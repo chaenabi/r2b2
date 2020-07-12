@@ -1,0 +1,36 @@
+.clean-table-wrap h2 {
+    font-size: 1.4rem;
+}
+
+.clean-table-wrap h2 svg {
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.clean-table-wrap {
+    padding: 1rem 2rem;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding-bottom: 2rem;
+    border-left: 10px solid #409EFF
+}
+
+.clean-table-wrap table {
+    border-top: 1px solid #ddd
+}
+
+.clean-table-wrap table th {
+    color: #333;
+    font-weight: bold;
+    max-height: 30px !important;
+}
+
+.clean-table-wrap table td {
+    border-bottom: none;
+}
+
+.clean-table-wrap table tr:nth-child(odd) td {
+    background: #f6f6f6;
+    height: 20px;
+}
