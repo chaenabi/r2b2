@@ -3,27 +3,27 @@ import React from "react";
 import ChartistGraph from "react-chartist";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
-import Icon from "@material-ui/core/Icon";
+//import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
+// import Warning from "@material-ui/icons/Warning";
+ import DateRange from "@material-ui/icons/DateRange";
+// import LocalOffer from "@material-ui/icons/LocalOffer";
+// import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
+//import Accessibility from "@material-ui/icons/Accessibility";
+//import BugReport from "@material-ui/icons/BugReport";
+//import Code from "@material-ui/icons/Code";
+//import Cloud from "@material-ui/icons/Cloud";
 // core components
 import GridItem from "../../components/Grid/GridItem.js";
 //components/Grid/GridItem.js
 import GridContainer from "../../components/Grid/GridContainer.js";
-import Table from "../../components/Table/Table.js";
-import Tasks from "../../components/Tasks/Tasks.js";
-import CustomTabs from "../../components/CustomTabs/CustomTabs.js";
-import Danger from "../../components/Typography/Danger.js";
+// import Table from "../../components/Table/Table.js";
+// import Tasks from "../../components/Tasks/Tasks.js";
+// import CustomTabs from "../../components/CustomTabs/CustomTabs.js";
+// import Danger from "../../components/Typography/Danger.js";
 import Image from 'react-bootstrap/Image';
 import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
@@ -31,8 +31,8 @@ import CardIcon from "../../components/Card/CardIcon.js";
 import CardBody from "../../components/Card/CardBody.js";
 import CardFooter from "../../components/Card/CardFooter.js";
 
-import { bugs, website, server } from "../../variables/general.js";
-
+// import { bugs, website, server } from "../../variables/general.js";
+import r2d2Trim from "./r2d2_trim.png";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -50,41 +50,51 @@ export default function Dashboard() {
       <GridContainer>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <Image src="./r2d2.png"></Image>
+            <CardHeader color="success" stats icon>
+              <CardIcon color="success">
+                <Store />
+              </CardIcon>
+              <p className={classes.cardCategory}>100%</p>
+              <h3 className={classes.cardTitle}>R2D2</h3>
+            </CardHeader>
+            {/* <CardFooter stats>
+              <div className={classes.stats}>
+                <DateRange />
+                Last 24 Hours
+              </div>
+            </CardFooter> */}
+            <CardFooter>
+              <Image src={r2d2Trim} alt="r2d2" rounded/>
+            </CardFooter>
           </Card>
         </GridItem>
-      </GridContainer>
-      <GridContainer>
+     
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
-            <CardHeader color="success">
+            <CardHeader color="primary">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={completedTasksChart.data}
                 type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
+                options={completedTasksChart.options}
+                listener={completedTasksChart.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales</h4>
-              <p className={classes.cardCategory}>
-                <span className={classes.successText}>
-                  <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                </span>{" "}
-                increase in today sales.
-              </p>
+              <h4 className={classes.cardTitle}>Temperature Degree</h4>
+              <p className={classes.cardCategory}>trace surrounding temperature R2D2 gets.</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> updated 4 minutes ago
+                <AccessTime /> update every 10 sec
               </div>
             </CardFooter>
           </Card>
         </GridItem>
+
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
-            <CardHeader color="warning">
+            <CardHeader color="primary">
               <ChartistGraph
                 className="ct-chart"
                 data={emailsSubscriptionChart.data}
@@ -95,19 +105,48 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Humidity Degree</h4>
+              <p className={classes.cardCategory}>trace the value of humidity sensor</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> update every 10 sec
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+  
+      </GridContainer>
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={4}>
+          <Card chart>
+            <CardHeader color="danger">
+              <ChartistGraph
+                className="ct-chart"
+                data={dailySalesChart.data}
+                type="Line"
+                options={dailySalesChart.options}
+                listener={dailySalesChart.animation}
+              />
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>Ultrafine dust (pm1.0)</h4>
+              <p className={classes.cardCategory}>
+                <span className={classes.successText}>
+                </span>{" "}
+                trace status of ultrafine dust (pm1.0) around the air
+              </p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                <AccessTime /> update every 10 sec
               </div>
             </CardFooter>
           </Card>
         </GridItem>
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
-            <CardHeader color="danger">
+          <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
                 data={completedTasksChart.data}
@@ -117,18 +156,41 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Completed Tasks</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Ultrafine dust (pm2.5)</h4>
+              <p className={classes.cardCategory}>  trace status of ultrafine dust (pm2.5) around the air</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> update every 10 sec
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={4}>
+          <Card chart>
+            <CardHeader color="info">
+              <ChartistGraph
+                className="ct-chart"
+                data={completedTasksChart.data}
+                type="Line"
+                options={completedTasksChart.options}
+                listener={completedTasksChart.animation}
+              />
+            </CardHeader>
+            <CardBody>
+              <h4 className={classes.cardTitle}>Fine Dust (pm10)</h4>
+              <p className={classes.cardCategory}>  trace status of fine dust (pm10) around the air</p>
+            </CardBody>
+            <CardFooter chart>
+              <div className={classes.stats}>
+                <AccessTime /> update every 10 sec
               </div>
             </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
       <GridContainer>
+         {/*
         <GridItem xs={12} sm={12} md={6}>
           <CustomTabs
             title="Tasks:"
@@ -191,7 +253,7 @@ export default function Dashboard() {
               />
             </CardBody>
           </Card>
-        </GridItem>
+        </GridItem> */}
       </GridContainer>
     </div>
   );
