@@ -28,6 +28,41 @@ app.get('/r2d2_module_data', (req, res) => {
     return res.json(data);
 });
 
+/**
+ *   @date    : 2020-07-18 Sat
+ *   @author  : Androino Study Group, Lee MC
+ *   @content :                     
+ *               [전체 데이터 api 목록]       변수명
+ *               1. 온습도(DH11)          - temperature/humidity
+ *               2. 미세먼지(PMS 7003)    - particualte_matter
+ *               3. 초음파센서             - 구분값 불명
+ *               4. 배터리현황             - battery
+ *               5. 위치                 - region
+ *               6. r2d2 기기 식별변호구분  - id
+ *
+ *             [구현 필요 목록] 
+ *             ----- 긴급 -----
+ *              1. 미세먼지(PMS 7003)     :  pm1.0(구분: 초미세먼지,  색상: 빨강,    변수명: particulate_matter1)
+ *                                         pm2.5(구분: 초미세먼지,  색상: 노랑,    변수명: particulate_matter2)
+ *                                         pm10(구분:   미세먼지,  색상: 파랑,    변수명: particulate_matter3) 
+ *                                         웹화면 출력
+ *                                         
+ *              2. 초음파센서              : 거리 데이터 ui 웹화면 출력
+ *              3. r2d2                 : 식별번호 구분 웹화면 출력
+ *              4. 공기 청정 여부(boolean) : 시작/완료 (서버에도 결과 송신?)
+ *              5. 배터리 현황 (전력 측정)  : 웹화면 출력
+ *
+ *              ----- 보통 -----
+ *              1. 정부 미세먼지 api를 가져와서 비교해주는 기능  
+ *              2. 방위치 (RFID?)
+ *               
+ */
+
+
+
+
+
+
 const data = [
     {
         DHT11_Temp: 32,
