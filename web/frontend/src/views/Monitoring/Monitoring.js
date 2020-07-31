@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 // font-awesome
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faList } from '@fortawesome/free-solid-svg-icons'
@@ -10,48 +10,67 @@ import faker from 'faker'
 import '../../assets/css/monitoring.css'
 // images
 import r2d2Image from "../../assets/img/r2d2.png";
-class Monitoring extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      info: {
-        tableName : 'R2D2 구동 현황'
-      },
-      r2d2: [
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-        {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: faker.random.boolean()},
-      ]
-    }
-  }
-  componentDidMount(){
-    console.log(this.state);
-  }
-  render() {
+import axios from 'axios';
+
+function Monitoring() {
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     info: {
+  //       tableName : 'R2D2 구동 현황'
+  //     },
+  //     r2d2: [
+  //       {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: true},
+  //       {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: false},
+  //       // {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: false},
+  //       // {id: faker.random.uuid().substring(0,16), clean: faker.random.number(50), lastAt: faker.date.past() , ip: faker.internet.ip(), isWorking: false},
+  //     ]
+  //   }
+  // }
+  // componentDidMount(){
+  //   console.log(this.state);
+  // }
+  const [id, setId] = useState('');
+  
+  const info = { tableName: 'R2D2 구동 현황'}
+  const r2d2 = [
+    {id: id, isWorking: true},
+    {id: faker.random.uuid().substring(0,16), isWorking: false},
+  ]
+  
+  const [dataList, setDataList] = useState([]);
+  const [temperature, setTemperature] = useState(0);
+  const [humid, setHumid] = useState(0);
+  const [pm1, setPm1] = useState(0);
+  const [pm10, setPm10] = useState(0);
+  const [pm25, setPm25] = useState(0);
+  const statusName = ['온도', '습도', 'pm1.0', 'pm2.5', 'pm10'];
+
+  const getStatus = useEffect(() => { 
+    setTimeout(() => {
+      axios.get('http://211.229.91.230:3000/api/r2d2')
+            .then(res => {
+              let parseData = JSON.parse(JSON.stringify(res.data[0]));  
+              setId(parseData.r2d2_id);
+              setTemperature(parseData.r2d2_temperature);
+              setHumid(parseData.r2d2_humidity);
+              setPm1(parseData.r2d2_particulate_matter1);
+              setPm10(parseData.r2d2_particulate_matter2);
+              setPm25(parseData.r2d2_particulate_matter3);               
+              setDataList(prev => 
+                [temperature, humid, pm1, pm10, pm25],
+              )
+            })
+  }, 500);
+  },[dataList]);
+
     return (
       <div className="content-wrap">
         <div className="monitor-wrap">
-        <h2>{this.state.info.tableName}</h2>
+        <h2>{info.tableName}</h2>
         <ul className="r2d2-list">
             {
-              this.state.r2d2.map((value,index)=>{
+              r2d2.map((value,index)=>{
               return (
               <li key={index} className={value.isWorking? 'on' : 'off'}>
                 <div className="image-container">
@@ -66,7 +85,15 @@ class Monitoring extends Component {
                     <span>작동상태</span>
                     <span className={value.isWorking?"on":"off"}>{value.isWorking ? "working" : "terminated"}</span>
                   </p>
-                 <button>관리</button>
+                  <div className="r2d2-status">  
+                    <div className="r2d2-status-data">
+                      {statusName.map(value => <div>{value}</div>)}
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map((value) => <div>{value}</div>)}  
+                    </div>
+                  </div>
+                 {/* <button>관리</button> */}
                 </div>
               </li>
               )
@@ -78,6 +105,6 @@ class Monitoring extends Component {
       </div>
     );
   }
-}
+
 
 export default Monitoring;

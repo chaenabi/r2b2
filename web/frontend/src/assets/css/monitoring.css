@@ -1,125 +1,158 @@
-.clean-table-wrap {}
+.clean-table-wrap {
+}
 
 .monitor-wrap h2 {
-    font-size: 1.4rem;
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-left: 10px solid #67C23A;
-    display: flex;
-    align-items: center;
-    padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-left: 10px solid #67c23a;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
 }
 
 .monitor-wrap h2 svg {
-    margin-right: 0.8rem;
-    font-size: 1.1rem;
+  margin-right: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .r2d2-list {
-    list-style: none;
-    display: grid;
-    grid-gap: 1.5rem;
-    grid-template-columns: repeat(5, 1fr);
-    padding: 0;
+  list-style: none;
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0;
 }
 
-.r2d2-list li {
-    padding: 1rem;
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+.r2d2-list > li {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .r2d2-list .image-container {
-    width: 100%;
-    height: 40%;
-    overflow: hidden;
+  width: 40%;
+  height: 30%;
+  overflow: hidden;
+  float: left;
 }
 
 .r2d2-list li img {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 .info-container {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-size: 12px;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 12px;
 }
 
-.info-container>p {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+.info-container > p {
+  margin: 0 0 0 50px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
-.info-container>p>span:first-child {
-    color: #888;
+.r2d2-status {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  list-style: none;
+  margin-top: 12px;
+  flex-basis: 100px;
+  justify-content: space-evenly;
+  padding-right: 12em;
+}
+.r2d2-status-data {
+  flex-direction: column;
+  font-size: 12px;
 }
 
-.info-container>p .off {
-    color: #F56C6C
+.r2d2-status-data > div {
+  padding-top: 20px;
 }
 
-.info-container>p .on {
-    color: #67C23A;
-    font-weight: bold;
+/* .r2d2-status-bullet {
+  padding: 0 30px;
+  list-style: none;
+}
+
+.r2d2-status-data-list {
+  padding: 0.2rem;
+  background-color: #fff;
+  font-size: 1.2rem;
+} */
+
+.info-container > p > span:first-child {
+  color: #888;
+}
+
+.info-container > p .off {
+  color: #f56c6c;
+}
+
+.info-container > p .on {
+  color: #67c23a;
+  font-weight: bold;
 }
 
 .info-container button {
-    border: none;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    cursor: pointer;
+  border: none;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  cursor: pointer;
 }
 
 .info-container button:hover {
-    background: #333;
-    color: #fff;
+  background: #333;
+  color: #fff;
 }
 
-.r2d2-list>li {
-    cursor: pointer;
+.r2d2-list > li {
+  cursor: pointer;
 }
 
-.r2d2-list>.off {
-    opacity: 0.3;
+.r2d2-list > .off {
+  opacity: 0.3;
 }
 
 .r2d2-list .off:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 @media (max-width: 1024px) {
-    .r2d2-list {
-        list-style: none;
-        display: grid;
-        grid-gap: 1.5rem;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 0;
-    }
+  .r2d2-list {
+    list-style: none;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) {
-    .r2d2-list {
-        list-style: none;
-        display: grid;
-        grid-gap: 1.5rem;
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0;
-    }
+  .r2d2-list {
+    list-style: none;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+  }
 }
 
 @media (max-width: 668px) {
-    .r2d2-list {
-        list-style: none;
-        display: grid;
-        grid-gap: 1.5rem;
-        grid-template-columns: repeat(1, 1fr);
-        padding: 0;
-    }
+  .r2d2-list {
+    list-style: none;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0;
+  }
 }

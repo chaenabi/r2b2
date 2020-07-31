@@ -33,27 +33,29 @@ function UserProfile() {
   const [dataList, setDataList] = useState([]);
   const [temperature, setTemperature] = useState(0);
   const [humid, setHumid] = useState(0);
+  const [pm1, setPm1] = useState(0);
   const [pm10, setPm10] = useState(0);
   const [pm25, setPm25] = useState(0);
-  
+  const [insertDate, setInsertDate] = useState('');
 
     const getData = 
       useEffect(() => { 
       setTimeout(() => {
-         axios.get('http://localhost:5000/r2d2_module_data')
+         axios.get('http://211.229.91.230:3000/api/r2d2')
               .then(res => {
                 let parseData = JSON.parse(JSON.stringify(res.data[0]));  
-                setTemperature(parseData.DHT11_Temp);
-                setHumid(parseData.DHT11_Humi);
-                setPm10(parseData.PMS7003_PM10);
-                setPm25(parseData.PMS7003_PM25);                
+                setTemperature(parseData.r2d2_temperature);
+                setHumid(parseData.r2d2_humidity);
+                setPm1(parseData.r2d2_particulate_matter1);
+                setPm10(parseData.r2d2_particulate_matter2);
+                setPm25(parseData.r2d2_particulate_matter3);
+                setInsertDate(parseData.insert_date);               
                 setDataList(prev => [
                   ...prev,
-                  [temperature, humid, pm10, pm25],
+                  [temperature, humid, pm1, pm10, pm25, insertDate],
                 ])
               })
-    }, 5000);
-  
+    }, 4000);
   },[dataList]);
   //render(){
     return (
@@ -63,7 +65,7 @@ function UserProfile() {
           <h2><FontAwesomeIcon icon={faList} />{tableName}</h2>
         <Table
              tableHeaderColor="primary"
-             tableHead={["온도", "습도", "미세먼지1", "미세먼지2"]}
+             tableHead={["온도", "습도", "초미세먼지(pm1.0)", "초미세먼지(pm2.5)", "미세먼지(pm10)", "수신날짜"]}
              tableData={dataList}
            />
         </div>
