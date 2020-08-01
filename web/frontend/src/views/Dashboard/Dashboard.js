@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -43,8 +44,136 @@ import styles from "../../assets/jss/material-dashboard-react/views/dashboardSty
 
 const useStyles = makeStyles(styles);
 
+
+
 export default function Dashboard() {
   const classes = useStyles();
+  const [dataList, setDataList] = useState([]);
+  const [temperArr, setTemperArr] = useState([]);
+  const [humidArr, setHumidArr] = useState([]);
+  const [pm1Arr, setPm1Arr] = useState([]);
+  const [pm10Arr, setPm10Arr] = useState([]);
+  const [pm25Arr, setPm25Arr] = useState([]);
+
+  const [id, setId] = useState('');
+
+  const [temperature, setTemperature] = useState(0);
+  const [humid, setHumid] = useState(0);
+  const [pm1, setPm1] = useState(0);
+  const [pm10, setPm10] = useState(0);
+  const [pm25, setPm25] = useState(0);
+  const [battery, setBattery] = useState(0);
+  //const statusName = ['온도', '습도', 'pm1.0', 'pm2.5', 'pm10'];
+  
+
+  const getStatus = useEffect(() => { 
+    setTimeout(() => {
+      axios.get('http://211.229.91.230:3000/api/r2d2')
+            .then(res => {
+              let parseData = JSON.parse(JSON.stringify(res.data[0]));  
+              setId(parseData.r2d2_id);
+              setTemperature(parseData.r2d2_temperature);
+              setHumid(parseData.r2d2_humidity);
+              setPm1(parseData.r2d2_particulate_matter1);
+              setPm10(parseData.r2d2_particulate_matter2);
+              setPm25(parseData.r2d2_particulate_matter3);    
+              setBattery(parseData.r2d2_battery);           
+              setDataList(prev => 
+                [temperature, humid, pm1, pm10, pm25],
+              )
+              setTemperArr(prev => [
+                ...prev,
+                temperature
+              ])
+              setHumidArr(prev => [
+                ...prev,
+                humid
+              ])
+              setPm1Arr(prev => [
+                ...prev,
+                pm1
+              ])
+              setPm10Arr(prev => [
+                ...prev,
+                pm10
+              ])
+              setPm25Arr(prev => [
+                ...prev,
+                pm25
+              ])
+            })
+  }, 10000);
+  },[dataList]);
+
+
+
+  const tempatureList = {
+    labels: [],
+    series: [
+      temperArr
+    ]
+  };
+
+  const humidList = {
+    labels: [],
+    series: [
+      humidArr
+    ]
+  };
+
+  const pm1List = {
+    labels: [],
+    series: [
+      pm1Arr
+    ]
+  };
+
+  const pm10List = {
+    labels: [],
+    series: [
+      pm10Arr
+    ]
+  };
+
+  const pm25List = {
+    labels: [],
+    series: [
+      pm25Arr
+    ]
+  };
+
+  const temperOptions = {
+    high: 80,
+    low: 0,
+    axisX: {
+      labelInterpolationFnc: function(value, index) {
+        return index % 2 === 0 ? value : null;
+      }
+    },
+  };
+
+  const humidOptions = {
+    high: 90,
+    low: 0,
+    axisX: {
+      labelInterpolationFnc: function(value, index) {
+        return index % 2 === 0 ? value : null;
+      }
+    }
+  };
+  
+
+  const dustOptions = {
+    high: 30,
+    low: 0,
+    axisX: {
+      labelInterpolationFnc: function(value, index) {
+        return index % 5 === 0 ? value : null;
+      }
+    }
+  };
+  
+
   return (
     <div>
       <GridContainer>
@@ -54,7 +183,7 @@ export default function Dashboard() {
               <CardIcon color="success">
                 <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>100%</p>
+              <p className={classes.cardCategory}>{battery}%</p>
               <h3 className={classes.cardTitle}>R2D2</h3>
             </CardHeader>
             {/* <CardFooter stats>
@@ -74,9 +203,9 @@ export default function Dashboard() {
             <CardHeader color="primary">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={tempatureList}
                 type="Line"
-                options={completedTasksChart.options}
+                options={temperOptions}
                 listener={completedTasksChart.animation}
               />
             </CardHeader>
@@ -97,11 +226,10 @@ export default function Dashboard() {
             <CardHeader color="primary">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
+                data={humidList}
                 type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                options={humidOptions}
+                
               />
             </CardHeader>
             <CardBody>
@@ -123,9 +251,9 @@ export default function Dashboard() {
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={pm1List}
                 type="Line"
-                options={dailySalesChart.options}
+                options={dustOptions}
                 listener={dailySalesChart.animation}
               />
             </CardHeader>
@@ -149,9 +277,9 @@ export default function Dashboard() {
           <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={pm25List}
                 type="Line"
-                options={completedTasksChart.options}
+                options={dustOptions}
                 listener={completedTasksChart.animation}
               />
             </CardHeader>
@@ -171,9 +299,9 @@ export default function Dashboard() {
             <CardHeader color="info">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={pm10List}
                 type="Line"
-                options={completedTasksChart.options}
+                options={dustOptions}
                 listener={completedTasksChart.animation}
               />
             </CardHeader>

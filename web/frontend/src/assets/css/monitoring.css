@@ -64,19 +64,35 @@
   flex-direction: row;
   flex-wrap: wrap;
   flex: 0 1 auto;
+  margin-top: 12px;
+  justify-content: start;
+}
+
+.r2d2-status-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
   list-style: none;
   margin-top: 12px;
-  flex-basis: 100px;
+  flex-basis: 230px;
+  width: 230px;
+  min-height: 140px;
   justify-content: space-evenly;
-  padding-right: 12em;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 1.4rem;
+  padding: 15px 0;
 }
+
 .r2d2-status-data {
   flex-direction: column;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .r2d2-status-data > div {
-  padding-top: 20px;
+  padding: 0.1rem 0;
+  font-weight: bold;
 }
 
 /* .r2d2-status-bullet {

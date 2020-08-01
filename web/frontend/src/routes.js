@@ -53,13 +53,13 @@ const dashboardRoutes = [
     component: Monitoring,
     layout: "/admin"
   },
-  {
-    path: "/setting",
-    name: "R2D2 관리",
-    icon: 'settings',
-    component: Setting,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/setting",
+  //   name: "R2D2 관리",
+  //   icon: 'settings',
+  //   component: Setting,
+  //   layout: "/admin"
+  // },
   // {
   //   path: "/setting",
   //   name: "Icons",

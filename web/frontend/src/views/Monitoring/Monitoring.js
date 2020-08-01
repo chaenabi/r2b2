@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 // font-awesome
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faList } from '@fortawesome/free-solid-svg-icons'
@@ -35,7 +35,7 @@ function Monitoring() {
   const info = { tableName: 'R2D2 구동 현황'}
   const r2d2 = [
     {id: id, isWorking: true},
-    {id: faker.random.uuid().substring(0,16), isWorking: false},
+    {id: 'not detected', isWorking: false},
   ]
   
   const [dataList, setDataList] = useState([]);
@@ -61,7 +61,7 @@ function Monitoring() {
                 [temperature, humid, pm1, pm10, pm25],
               )
             })
-  }, 500);
+  }, 1000);
   },[dataList]);
 
     return (
@@ -85,15 +85,51 @@ function Monitoring() {
                     <span>작동상태</span>
                     <span className={value.isWorking?"on":"off"}>{value.isWorking ? "working" : "terminated"}</span>
                   </p>
-                  <div className="r2d2-status">  
+                  <div className="r2d2-status">
+                    <div className="r2d2-status-box">
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
                     <div className="r2d2-status-data">
-                      {statusName.map(value => <div>{value}</div>)}
+                      {statusName.map(status => <div>{status}</div>)}
                     </div>
                     <div className="r2d2-status-data">                
-                      {dataList.map((value) => <div>{value}</div>)}  
+                      {dataList.map(() =>
+                         <div></div>)}  
                     </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(status => value.isWorking ?
+                         <div>{status}</div> : <div>0</div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                    <div className="r2d2-status-data">                
+                      {dataList.map(() =>
+                         <div></div>)}  
+                    </div>
+                  
                   </div>
                  {/* <button>관리</button> */}
+                </div>
                 </div>
               </li>
               )
@@ -107,4 +143,4 @@ function Monitoring() {
   }
 
 
-export default Monitoring;
+export default React.memo(Monitoring);
