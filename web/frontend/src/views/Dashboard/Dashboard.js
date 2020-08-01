@@ -52,12 +52,12 @@ const Dashboard = memo(() => {
   const [pm1Arr, setPm1Arr] = useState([]);
   const [pm10Arr, setPm10Arr] = useState([]);
   const [pm25Arr, setPm25Arr] = useState([]);
-  const [id, setId] = useState('');
-  const [temperature, setTemperature] = useState(0);
-  const [humid, setHumid] = useState(0);
-  const [pm1, setPm1] = useState(0);
-  const [pm10, setPm10] = useState(0);
-  const [pm25, setPm25] = useState(0);
+  //const [id, setId] = useState('');
+  const [temperature, setTemperature] = useState(-50);
+  const [humid, setHumid] = useState(1);
+  const [pm1, setPm1] = useState(-50);
+  const [pm10, setPm10] = useState(-50);
+  const [pm25, setPm25] = useState(-50);
   const [battery, setBattery] = useState(0);
   const [idx, setIdx] = useState(0);
   //const statusName = ['온도', '습도', 'pm1.0', 'pm2.5', 'pm10'];
@@ -70,18 +70,16 @@ const Dashboard = memo(() => {
                    setDataList(result.data);
                 })
                 .catch(err => console.log(err));
-      }, 10000)
+      }, 3000)
   }, [dataList]);
   
   useEffect(() => {     
     setTimeout(() => {
       setIdx(idx+1);
-    }, 11000);
+    }, 1100);
       setTimeout(() => {
-        console.log("dataList[idx].r2d2_battery: " + dataList[idx].r2d2_battery);
-
             setBattery(dataList[idx].r2d2_battery);
-            setTemperature(dataList[idx].r2d2_tempature);
+            setTemperature(dataList[idx].r2d2_temperature);
             setHumid(dataList[idx].r2d2_humidity);
             setPm1(dataList[idx].r2d2_particulate_matter1);
             setPm25(dataList[idx].r2d2_particulate_matter2);
@@ -95,7 +93,8 @@ const Dashboard = memo(() => {
             ...prev,
             humid
           ])
-          setPm1Arr(prev => [
+          setPm1Arr(prev => 
+            [
             ...prev,
             pm1
           ])
@@ -107,7 +106,7 @@ const Dashboard = memo(() => {
             ...prev,
             pm10
           ])
-      }, 10000) 
+      }, 1000) 
     
   }, [dataList]);
 
@@ -123,6 +122,7 @@ const Dashboard = memo(() => {
     series: [
       humidArr
     ]
+    ,    seriesBarDistance: 12,
   };
 
   const pm1List = {
@@ -163,7 +163,8 @@ const Dashboard = memo(() => {
       labelInterpolationFnc: function(value, index) {
         return index % 2 === 0 ? value : null;
       }
-    }
+    },
+
   };
   
 
@@ -172,9 +173,9 @@ const Dashboard = memo(() => {
     low: 0,
     axisX: {
       labelInterpolationFnc: function(value, index) {
-        return index % 5 === 0 ? value : null;
+        return index % 2 === 0 ? value : null;
       }
-    }
+    },
   };
   
 
