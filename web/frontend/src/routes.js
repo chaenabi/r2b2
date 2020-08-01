@@ -28,7 +28,7 @@ import BubbleChart from "@material-ui/icons/BubbleChart";
 import DashboardPage from "./views/Dashboard/Dashboard.js";
 import Clean from "./views/Clean/Clean.js";
 import Monitoring from "./views/Monitoring/Monitoring.js";
-import Setting from "./views/Setting/Setting.js";
+//import Setting from "./views/Setting/Setting.js";
 //import Icons from "views/Icons/Icons.js";
 
 const dashboardRoutes = [

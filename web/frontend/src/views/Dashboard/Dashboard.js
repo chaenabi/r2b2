@@ -8,10 +8,10 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
 // import Warning from "@material-ui/icons/Warning";
- import DateRange from "@material-ui/icons/DateRange";
+// import DateRange from "@material-ui/icons/DateRange";
 // import LocalOffer from "@material-ui/icons/LocalOffer";
 // import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
+//import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 //import Accessibility from "@material-ui/icons/Accessibility";
 //import BugReport from "@material-ui/icons/BugReport";
@@ -36,7 +36,7 @@ import CardFooter from "../../components/Card/CardFooter.js";
 import r2d2Trim from "./r2d2_trim.png";
 import {
   dailySalesChart,
-  emailsSubscriptionChart,
+  //emailsSubscriptionChart,
   completedTasksChart
 } from "../../variables/charts.js";
 
@@ -108,7 +108,7 @@ const Dashboard = memo(() => {
           ])
       }, 1000) 
     
-  }, [dataList]);
+    }, [dataList, temperature, humid, pm1, pm25, pm10, idx]);
 
   const tempatureList = {
     labels: [],

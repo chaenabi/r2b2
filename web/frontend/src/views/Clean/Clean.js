@@ -10,24 +10,6 @@ import { faList } from '@fortawesome/free-solid-svg-icons'
 import '../../assets/css/clean.css'
 
 function UserProfile() {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     info: {
-  //       tableName : '온도 습도 미세먼지 데이터 수신테스트'
-  //     },
-  //     dataList: [
-  //       ["r2-zxc-1","제1 병동", "가동", "2020-07-12 12:11:53"],
-  //       ["r2-zxc-1","제1 병동", "가동", "2020-07-12 12:11:53"],
-  //       ["r2-zxc-1","제1 병동", "가동", "2020-07-12 12:11:53"],
-  //       ["r2-zxc-1","제1 병동", "가동", "2020-07-12 12:11:53"],
-  //       ["r2-zxc-1","제1 병동", "가동", "2020-07-12 12:11:53"]          
-  //     ]
-  //   }
-  // }
-  // componentDidMount(){
-  //   console.log(this.props,'its props');
-  // }
   
   const tableName = "온도 습도 미세먼지 데이터 수신테스트";
   const [dataList, setDataList] = useState([0]);
@@ -76,7 +58,7 @@ useEffect(() => {
         ])
     }, 5000) 
   
-}, [dataList]);
+}, [dataList, temperature, humid, pm1, pm25, pm10, date, idx]);
 
   //render(){
     return (
