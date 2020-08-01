@@ -58,7 +58,7 @@ useEffect(() => {
         ])
     }, 5000) 
   
-}, [dataList, temperature, humid, pm1, pm25, pm10, date, idx]);
+}, [dataList]);
 
   //render(){
     return (

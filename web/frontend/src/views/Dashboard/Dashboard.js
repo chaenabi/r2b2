@@ -108,7 +108,7 @@ const Dashboard = memo(() => {
           ])
       }, 1000) 
     
-    }, [dataList, temperature, humid, pm1, pm25, pm10, idx]);
+    }, [dataList]);
 
   const tempatureList = {
     labels: [],
