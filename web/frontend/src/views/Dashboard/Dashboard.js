@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import axios from 'axios';
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
@@ -44,68 +44,72 @@ import styles from "../../assets/jss/material-dashboard-react/views/dashboardSty
 
 const useStyles = makeStyles(styles);
 
-
-
-export default function Dashboard() {
+const Dashboard = memo(() => {
   const classes = useStyles();
-  const [dataList, setDataList] = useState([]);
+  const [dataList, setDataList] = useState([{}]);
   const [temperArr, setTemperArr] = useState([]);
   const [humidArr, setHumidArr] = useState([]);
   const [pm1Arr, setPm1Arr] = useState([]);
   const [pm10Arr, setPm10Arr] = useState([]);
   const [pm25Arr, setPm25Arr] = useState([]);
-
   const [id, setId] = useState('');
-
   const [temperature, setTemperature] = useState(0);
   const [humid, setHumid] = useState(0);
   const [pm1, setPm1] = useState(0);
   const [pm10, setPm10] = useState(0);
   const [pm25, setPm25] = useState(0);
   const [battery, setBattery] = useState(0);
+  const [idx, setIdx] = useState(0);
   //const statusName = ['온도', '습도', 'pm1.0', 'pm2.5', 'pm10'];
   
-
-  const getStatus = useEffect(() => { 
+  useEffect(() => {
+      setTimeout(() => {
+            axios.get('http://211.229.91.230:3000/api/r2d2')
+                 .then((res) => {
+                   let result = JSON.parse(JSON.stringify(res));
+                   setDataList(result.data);
+                })
+                .catch(err => console.log(err));
+      }, 10000)
+  }, [dataList]);
+  
+  useEffect(() => {     
     setTimeout(() => {
-      axios.get('http://211.229.91.230:3000/api/r2d2')
-            .then(res => {
-              let parseData = JSON.parse(JSON.stringify(res.data[0]));  
-              setId(parseData.r2d2_id);
-              setTemperature(parseData.r2d2_temperature);
-              setHumid(parseData.r2d2_humidity);
-              setPm1(parseData.r2d2_particulate_matter1);
-              setPm10(parseData.r2d2_particulate_matter2);
-              setPm25(parseData.r2d2_particulate_matter3);    
-              setBattery(parseData.r2d2_battery);           
-              setDataList(prev => 
-                [temperature, humid, pm1, pm10, pm25],
-              )
-              setTemperArr(prev => [
-                ...prev,
-                temperature
-              ])
-              setHumidArr(prev => [
-                ...prev,
-                humid
-              ])
-              setPm1Arr(prev => [
-                ...prev,
-                pm1
-              ])
-              setPm10Arr(prev => [
-                ...prev,
-                pm10
-              ])
-              setPm25Arr(prev => [
-                ...prev,
-                pm25
-              ])
-            })
-  }, 10000);
-  },[dataList]);
+      setIdx(idx+1);
+    }, 11000);
+      setTimeout(() => {
+        console.log("dataList[idx].r2d2_battery: " + dataList[idx].r2d2_battery);
 
-
+            setBattery(dataList[idx].r2d2_battery);
+            setTemperature(dataList[idx].r2d2_tempature);
+            setHumid(dataList[idx].r2d2_humidity);
+            setPm1(dataList[idx].r2d2_particulate_matter1);
+            setPm25(dataList[idx].r2d2_particulate_matter2);
+            setPm10(dataList[idx].r2d2_particulate_matter3);
+           
+          setTemperArr(prev => [
+            ...prev,
+            temperature
+          ])
+          setHumidArr(prev => [
+            ...prev,
+            humid
+          ])
+          setPm1Arr(prev => [
+            ...prev,
+            pm1
+          ])
+          setPm25Arr(prev => [
+            ...prev,
+            pm25
+          ])
+          setPm10Arr(prev => [
+            ...prev,
+            pm10
+          ])
+      }, 10000) 
+    
+  }, [dataList]);
 
   const tempatureList = {
     labels: [],
@@ -385,4 +389,6 @@ export default function Dashboard() {
       </GridContainer>
     </div>
   );
-}
+})
+
+export default Dashboard;

@@ -49,8 +49,27 @@ function Monitoring() {
   const getStatus = useEffect(() => { 
     setTimeout(() => {
       axios.get('http://211.229.91.230:3000/api/r2d2')
-            .then(res => {
-              let parseData = JSON.parse(JSON.stringify(res.data[0]));  
+           .then(async res => { 
+              res.data.forEach(async (item) => {
+                 let parseData = await JSON.parse(JSON.stringify(item));
+                 setId(parseData.r2d2_id);
+                 setTemperature(parseData.r2d2_temperature);
+                 setHumid(parseData.r2d2_humidity);
+                 setPm1(parseData.r2d2_particulate_matter1);
+                 setPm10(parseData.r2d2_particulate_matter2);
+                 setPm25(parseData.r2d2_particulate_matter3);               
+                 setDataList(prev => 
+                     [temperature, humid, pm1, pm10, pm25],                   
+                 )
+                })
+            })
+           .catch(err => console.log(err));
+
+        
+          /* let parseData = await JSON.parse(JSON.stringify(i));
+        
+          console.log(parseData);
+    
               setId(parseData.r2d2_id);
               setTemperature(parseData.r2d2_temperature);
               setHumid(parseData.r2d2_humidity);
@@ -58,13 +77,15 @@ function Monitoring() {
               setPm10(parseData.r2d2_particulate_matter2);
               setPm25(parseData.r2d2_particulate_matter3);               
               setDataList(prev => 
-                [temperature, humid, pm1, pm10, pm25],
+                [...prev,
+                  [temperature, humid, pm1, pm10, pm25],
+                ]
               )
-            })
-  }, 1000);
-  },[dataList]);
+          */
+        }, 10000) }, [dataList]);
 
     return (
+      {getStatus},
       <div className="content-wrap">
         <div className="monitor-wrap">
         <h2>{info.tableName}</h2>
@@ -92,7 +113,7 @@ function Monitoring() {
                          <div></div>)}  
                     </div>
                     <div className="r2d2-status-data">
-                      {statusName.map(status => <div>{status}</div>)}
+                      {statusName.map((status, i) => <div key={i}>{status}</div>)}
                     </div>
                     <div className="r2d2-status-data">                
                       {dataList.map(() =>
@@ -115,8 +136,8 @@ function Monitoring() {
                          <div></div>)}  
                     </div>
                     <div className="r2d2-status-data">                
-                      {dataList.map(status => value.isWorking ?
-                         <div>{status}</div> : <div>0</div>)}  
+                      {dataList.map((status, i) => value.isWorking ?
+                         <div key={i}>{status}</div> : <div key={i}>0</div>)}  
                     </div>
                     <div className="r2d2-status-data">                
                       {dataList.map(() =>

@@ -65,7 +65,7 @@
   flex-wrap: wrap;
   flex: 0 1 auto;
   margin-top: 12px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .r2d2-status-box {
