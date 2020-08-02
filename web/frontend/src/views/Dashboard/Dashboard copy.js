@@ -61,27 +61,29 @@ const Dashboard = memo(() => {
   const [battery, setBattery] = useState(0);
   const [idx, setIdx] = useState(0);
   //const statusName = ['온도', '습도', 'pm1.0', 'pm2.5', 'pm10'];
-  let count = 0;
+  
   useEffect(() => {
+      setTimeout(() => {
+        console.log('requres!!')
             axios.get('http://211.229.91.230:3000/api/r2d2')
                  .then((res) => {
-                  //  let result = JSON.parse(JSON.stringify(res));
-                  console.log(res)
-                 //  setDataList(result.data);
+                   let result = JSON.parse(JSON.stringify(res));
+                   setDataList(result.data);
                 })
                 .catch(err => console.log(err));
-
-
+      }, 3000)
   }, [dataList]);
   
   useEffect(() => {     
+  
+      setTimeout(() => {
             setBattery(dataList[idx].r2d2_battery);
             setTemperature(dataList[idx].r2d2_temperature);
             setHumid(dataList[idx].r2d2_humidity);
             setPm1(dataList[idx].r2d2_particulate_matter1);
             setPm25(dataList[idx].r2d2_particulate_matter2);
             setPm10(dataList[idx].r2d2_particulate_matter3);
-    
+           
           setTemperArr(prev => [
             ...prev,
             temperature
@@ -105,7 +107,7 @@ const Dashboard = memo(() => {
           ])
       }, 1000) 
     
-  
+    }, [dataList]);
 
   const tempatureList = {
     labels: [],
