@@ -58,13 +58,13 @@ function Monitoring() {
                  setDataList(result.data);
               })
               .catch(err => console.log(err));
-    }, 3000)
+    }, 5000)
 }, [dataList]);
 
 useEffect(() => {     
   setTimeout(() => {
     setIdx(idx+1);
-  }, 3000);
+  }, 5100);
 
     setTimeout(() => {
           setId(dataList[idx].r2d2_id);
@@ -83,7 +83,7 @@ useEffect(() => {
             ]
           )
 
- }, 3000) 
+ }, 5000) 
   
 }, [dataList]);
  

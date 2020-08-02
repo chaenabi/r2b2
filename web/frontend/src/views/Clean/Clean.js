@@ -30,13 +30,13 @@ function UserProfile() {
                  setDataList(result.data);
               })
               .catch(err => console.log(err));
-    }, 6000)
+    }, 5000)
 }, [dataList]);
 
 useEffect(() => {     
   setTimeout(() => {
     setIdx(idx+1);
-  }, 5000);
+  }, 5100);
 
     setTimeout(() => {
           setTemperature(dataList[idx].r2d2_temperature);

@@ -25,7 +25,6 @@ import GridContainer from "../../components/Grid/GridContainer.js";
 // import Tasks from "../../components/Tasks/Tasks.js";
 // import CustomTabs from "../../components/CustomTabs/CustomTabs.js";
 // import Danger from "../../components/Typography/Danger.js";
-import Image from 'react-bootstrap/Image';
 import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardIcon from "../../components/Card/CardIcon.js";
@@ -70,13 +69,13 @@ const Dashboard = memo(() => {
                    setDataList(result.data);
                 })
                 .catch(err => console.log(err));
-      }, 3000)
+      }, 5000)
   }, [dataList]);
   
   useEffect(() => {     
     setTimeout(() => {
       setIdx(idx+1);
-    }, 2000);
+    }, 5100);
       setTimeout(() => {
             setBattery(dataList[idx].r2d2_battery);
             setTemperature(dataList[idx].r2d2_temperature);
@@ -106,7 +105,7 @@ const Dashboard = memo(() => {
             ...prev,
             pm10
           ])
-      }, 2000) 
+      }, 5000) 
     
     }, [dataList]);
 
@@ -198,7 +197,7 @@ const Dashboard = memo(() => {
               </div>
             </CardFooter> */}
             <CardFooter>
-              <Image src={r2d2Trim} alt="r2d2" rounded/>
+              <img src={r2d2Trim} alt="r2d2"/>
             </CardFooter>
           </Card>
         </GridItem>
@@ -220,7 +219,7 @@ const Dashboard = memo(() => {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> update every 10 sec
+                <AccessTime /> update every 5 sec
               </div>
             </CardFooter>
           </Card>
@@ -243,7 +242,7 @@ const Dashboard = memo(() => {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> update every 10 sec
+                <AccessTime /> update every 5 sec
               </div>
             </CardFooter>
           </Card>
@@ -272,7 +271,7 @@ const Dashboard = memo(() => {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> update every 10 sec
+                <AccessTime /> update every 5 sec
               </div>
             </CardFooter>
           </Card>
@@ -294,7 +293,7 @@ const Dashboard = memo(() => {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> update every 10 sec
+                <AccessTime /> update every 5 sec
               </div>
             </CardFooter>
           </Card>
@@ -316,7 +315,7 @@ const Dashboard = memo(() => {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> update every 10 sec
+                <AccessTime /> update every 5 sec
               </div>
             </CardFooter>
           </Card>
