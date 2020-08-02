@@ -36,7 +36,7 @@ function UserProfile() {
 useEffect(() => {     
   setTimeout(() => {
     setIdx(idx+1);
-  }, 1100);
+  }, 5000);
 
     setTimeout(() => {
           setTemperature(dataList[idx].r2d2_temperature);

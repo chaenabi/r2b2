@@ -64,7 +64,7 @@ function Monitoring() {
 useEffect(() => {     
   setTimeout(() => {
     setIdx(idx+1);
-  }, 1100);
+  }, 3000);
 
     setTimeout(() => {
           setId(dataList[idx].r2d2_id);

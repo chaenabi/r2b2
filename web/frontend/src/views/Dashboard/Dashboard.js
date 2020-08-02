@@ -70,13 +70,13 @@ const Dashboard = memo(() => {
                    setDataList(result.data);
                 })
                 .catch(err => console.log(err));
-      }, 11000)
+      }, 3000)
   }, [dataList]);
   
   useEffect(() => {     
     setTimeout(() => {
       setIdx(idx+1);
-    }, 1100);
+    }, 2000);
       setTimeout(() => {
             setBattery(dataList[idx].r2d2_battery);
             setTemperature(dataList[idx].r2d2_temperature);
@@ -106,7 +106,7 @@ const Dashboard = memo(() => {
             ...prev,
             pm10
           ])
-      }, 10000) 
+      }, 2000) 
     
     }, [dataList]);
 
