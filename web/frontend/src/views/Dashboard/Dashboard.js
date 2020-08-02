@@ -74,8 +74,12 @@ const Dashboard = memo(() => {
   
   useEffect(() => {     
     setTimeout(() => {
-      setIdx(idx+1);
-    }, 5100);
+      console.log(dataList.length)
+      console.log(idx);
+      if(idx !== dataList.length-1) {
+          setIdx(idx+1);
+      }
+    }, 4999);
       setTimeout(() => {
             setBattery(dataList[idx].r2d2_battery);
             setTemperature(dataList[idx].r2d2_temperature);
