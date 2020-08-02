@@ -70,7 +70,7 @@ const Dashboard = memo(() => {
                    setDataList(result.data);
                 })
                 .catch(err => console.log(err));
-      }, 3000)
+      }, 11000)
   }, [dataList]);
   
   useEffect(() => {     
@@ -106,7 +106,7 @@ const Dashboard = memo(() => {
             ...prev,
             pm10
           ])
-      }, 1000) 
+      }, 10000) 
     
     }, [dataList]);
 
